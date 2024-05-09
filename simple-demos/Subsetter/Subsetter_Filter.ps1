@@ -1,7 +1,7 @@
 Import-Module SqlServer
 
 Write-Host "Resetting AdventureWorks_TDM"
-Invoke-Sqlcmd -InputFile ".\1. Database Creation\DBCC_Database_Clone-AdventureWorks.sql" -ServerInstance "WIN2016\"
+Invoke-Sqlcmd -InputFile ".\Database Reset\DBCC_Database_Clone-AdventureWorks.sql" -ServerInstance "WIN2016\"
 
 subsetter.exe `
 --database-engine sqlserver `

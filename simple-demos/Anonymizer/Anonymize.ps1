@@ -5,11 +5,6 @@ Write-Host "End-to-End TDM CLI"
 Write-Host "Database Type is - $databaseType"
 Write-Host "Connection String is - $connectionString"
 
-Import-Module SqlServer
-
-Write-Host "Resetting AdventureWorks_TDM"
-Invoke-Sqlcmd -InputFile ".\1. Database Creation\DBCC_Database_Clone-AdventureWorks.sql" -ServerInstance "WIN2016\"
-
 Write-Host "Classifying..."
 Anonymize.exe classify --database-engine $databaseType --connection-string $connectionString --classification-file classification.json --output-all-columns
 
