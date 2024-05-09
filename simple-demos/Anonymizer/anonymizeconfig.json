@@ -1,0 +1,41 @@
+{
+    "tables": [
+        {
+            "schema": "Person",
+            "name": "PersonPhone",
+			"columns": [
+                {
+                    "name": "PhoneNumber",
+                    "exclude": true
+                }
+            ]
+        },
+        {
+            "schema": "dbo",
+            "name": "CUSTOMER_NOTES",
+			"exclude": false
+        },
+        {
+            "schema": "dbo",
+            "name": "EMPLOYEE",
+			"exclude": false
+        },
+        {
+            "schema": "Person",
+            "name": "Address",
+			"exclude": true
+        }
+    ],
+    "datasets": [
+        {
+            "name": "IDNumbers",
+            "type": "Pattern",
+            "values": ["??######?"]
+        },
+		{
+		  "name": "ShortFirstNames",
+		  "type": "List",
+		  "values": ["Ann", "Bob", "Carlos", "Dalip"]
+		}
+    ]
+}

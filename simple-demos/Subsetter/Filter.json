@@ -1,0 +1,5 @@
+{
+  "DatabaseEngine": "SqlServer",
+  "StartingTable": "dbo.DM_Customer",
+  "Filter": "COMPANY([customer_company_name]) IN (Redgate Ltd)"
+}
