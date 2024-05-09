@@ -1,0 +1,186 @@
+{
+  "tables": [
+    {
+      "schema": "dbo",
+      "name": "Customers",
+      "exclude": true,
+      "columns": [
+        {
+          "name": "ContactName",
+          "dataset": "FullNames",
+          "deterministic": true,
+          "maxLength": 30
+        },
+        {
+          "name": "Address",
+          "dataset": "StreetAddresses",
+          "deterministic": true,
+          "maxLength": 60
+        },
+        {
+          "name": "City",
+          "dataset": "Cities",
+          "deterministic": true,
+          "maxLength": 15
+        },
+        {
+          "name": "PostalCode",
+          "dataset": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "Country",
+          "dataset": "Countries",
+          "deterministic": true,
+          "maxLength": 15
+        },
+        {
+          "name": "Phone",
+          "dataset": "PhoneNumbers",
+          "maxLength": 24
+        },
+        {
+          "name": "Fax",
+          "dataset": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Employees",
+      "columns": [
+        {
+          "name": "LastName",
+          "dataset": "FamilyNames",
+          "exclude": true,
+          "deterministic": true,
+          "maxLength": 20
+        },
+        {
+          "name": "FirstName",
+          "dataset": "GivenNames",
+          "deterministic": true,
+          "maxLength": 10
+        },
+        {
+          "name": "BirthDate",
+          "dataset": "DatesOfBirth"
+        },
+        {
+          "name": "Address",
+          "dataset": "StreetAddresses",
+          "deterministic": true,
+          "maxLength": 60
+        },
+        {
+          "name": "City",
+          "dataset": "Cities",
+          "deterministic": true,
+          "maxLength": 15
+        },
+        {
+          "name": "PostalCode",
+          "dataset": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "Country",
+          "dataset": "Countries",
+          "deterministic": true,
+          "maxLength": 15
+        },
+        {
+          "name": "HomePhone",
+          "dataset": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Orders",
+      "columns": [
+        {
+          "name": "ShipAddress",
+          "dataset": "StreetAddresses",
+          "deterministic": true,
+          "maxLength": 60
+        },
+        {
+          "name": "ShipCity",
+          "dataset": "Cities",
+          "deterministic": true,
+          "maxLength": 15
+        },
+        {
+          "name": "ShipPostalCode",
+          "dataset": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "ShipCountry",
+          "dataset": "Countries",
+          "deterministic": true,
+          "maxLength": 15
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Shippers",
+      "columns": [
+        {
+          "name": "Phone",
+          "dataset": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Suppliers",
+      "columns": [
+        {
+          "name": "ContactName",
+          "dataset": "FullNames",
+          "deterministic": true,
+          "maxLength": 30
+        },
+        {
+          "name": "Address",
+          "dataset": "StreetAddresses",
+          "deterministic": true,
+          "maxLength": 60
+        },
+        {
+          "name": "City",
+          "dataset": "Cities",
+          "deterministic": true,
+          "maxLength": 15
+        },
+        {
+          "name": "PostalCode",
+          "dataset": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "Country",
+          "dataset": "Countries",
+          "deterministic": true,
+          "maxLength": 15
+        },
+        {
+          "name": "Phone",
+          "dataset": "PhoneNumbers",
+          "maxLength": 24
+        },
+        {
+          "name": "Fax",
+          "dataset": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    }
+  ]
+}

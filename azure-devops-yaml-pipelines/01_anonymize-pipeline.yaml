@@ -1,0 +1,36 @@
+name: redgate-anonymize-example
+ 
+schedules:
+- cron: 0 2 * * * # cron syntax for 2am daily
+  branches:
+    include: 
+    - main
+  displayName: 2am daily # friendly name given to a specific schedule
+
+trigger: none
+
+parameters:
+- name: serverinstance
+  default: "WIN2016"
+- name: databaseName
+  default: "Eastwind"
+
+stages:
+  - stage: Anonymize  
+    displayName: Anonymize
+    jobs:
+    - job: ${{parameters.databaseName}}
+      displayName: Anonymize ${{parameters.databaseName}}
+
+      steps:
+      - powershell: |
+          $server = "${{ parameters.serverinstance }}"
+          $database = "${{ parameters.databaseName }}"
+          $message = "Running anonymize.exe on ${server}" + "." + "${database}"
+          Write-Output "${message}"
+          anonymize mask --database-engine SqlServer --connection-string "Server=${server}; Database=${database}; Integrated Security=true; TrustServerCertificate=true" --masking-file config\masking.json --options-file config\options.json
+        displayName: Run anonymize.exe
+      - powershell: |
+          import-module dbatools
+          Backup-DbaDatabase -SqlInstance ${{ parameters.serverinstance }} -Database ${{ parameters.databaseName }}
+        displayName: Backup anonymized database

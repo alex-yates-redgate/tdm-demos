@@ -1,0 +1,7 @@
+name: mssql-empty
+engine: mssql
+version: 2019
+sourceType: empty
+tags:
+  - empty
+lifetime: 0h

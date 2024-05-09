@@ -1,0 +1,168 @@
+{
+  "tables": [
+    {
+      "schema": "dbo",
+      "name": "Customers",
+      "columns": [
+        {
+          "name": "ContactName",
+          "type": "FullNames",
+          "maxLength": 30
+        },
+        {
+          "name": "Address",
+          "type": "StreetAddresses",
+          "maxLength": 60
+        },
+        {
+          "name": "City",
+          "type": "Cities",
+          "maxLength": 15
+        },
+        {
+          "name": "PostalCode",
+          "type": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "Country",
+          "type": "Countries",
+          "maxLength": 15
+        },
+        {
+          "name": "Phone",
+          "type": "PhoneNumbers",
+          "maxLength": 24
+        },
+        {
+          "name": "Fax",
+          "type": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Employees",
+      "columns": [
+        {
+          "name": "LastName",
+          "type": "FamilyNames",
+          "maxLength": 20
+        },
+        {
+          "name": "FirstName",
+          "type": "GivenNames",
+          "maxLength": 10
+        },
+        {
+          "name": "BirthDate",
+          "type": "DatesOfBirth"
+        },
+        {
+          "name": "Address",
+          "type": "StreetAddresses",
+          "maxLength": 60
+        },
+        {
+          "name": "City",
+          "type": "Cities",
+          "maxLength": 15
+        },
+        {
+          "name": "PostalCode",
+          "type": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "Country",
+          "type": "Countries",
+          "maxLength": 15
+        },
+        {
+          "name": "HomePhone",
+          "type": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Orders",
+      "columns": [
+        {
+          "name": "ShipAddress",
+          "type": "StreetAddresses",
+          "maxLength": 60
+        },
+        {
+          "name": "ShipCity",
+          "type": "Cities",
+          "maxLength": 15
+        },
+        {
+          "name": "ShipPostalCode",
+          "type": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "ShipCountry",
+          "type": "Countries",
+          "maxLength": 15
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Shippers",
+      "columns": [
+        {
+          "name": "Phone",
+          "type": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "Suppliers",
+      "columns": [
+        {
+          "name": "ContactName",
+          "type": "FullNames",
+          "maxLength": 30
+        },
+        {
+          "name": "Address",
+          "type": "StreetAddresses",
+          "maxLength": 60
+        },
+        {
+          "name": "City",
+          "type": "Cities",
+          "maxLength": 15
+        },
+        {
+          "name": "PostalCode",
+          "type": "PostCodes",
+          "maxLength": 10
+        },
+        {
+          "name": "Country",
+          "type": "Countries",
+          "maxLength": 15
+        },
+        {
+          "name": "Phone",
+          "type": "PhoneNumbers",
+          "maxLength": 24
+        },
+        {
+          "name": "Fax",
+          "type": "PhoneNumbers",
+          "maxLength": 24
+        }
+      ]
+    }
+  ]
+}

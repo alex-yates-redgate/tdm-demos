@@ -1,0 +1,19 @@
+{
+    "tables": [
+        {
+            "schema": "dbo",
+            "name": "Customers",
+            "exclude": true 
+        },
+        {
+            "schema": "dbo",
+            "name": "Employees",
+            "columns": [
+                {
+                    "name": "LastName",
+                    "exclude": true
+                }
+            ]
+        }
+    ]
+}
