@@ -22,7 +22,7 @@ stages:
     displayName: Set up staging databases
     jobs:
     - job: ${{parameters.databaseName}}
-      displayName: Subset ${{parameters.databaseName}}
+      displayName: Create staging databases
       steps:
       - powershell: |
           $backupDir = "${{parameters.backupDir}}"
@@ -44,12 +44,12 @@ stages:
           Invoke-DbaQuery -SqlInstance ${{parameters.serverinstance}} -Query $sql
         displayName: 'Create target for subset'
   - stage: Subset  
-    displayName: Subset data from source database into target database
+    displayName: Import subset of data
     dependsOn: SetUp
     condition: succeeded()
     jobs:
     - deployment: Subset
-      displayName: Subset ${{parameters.databaseName}}
+      displayName: run subset.exe
       environment: 'Subset'
       strategy:
         runOnce:
@@ -71,12 +71,12 @@ stages:
                 subsetter --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --starting-table=$startingTable --filter-clause=$filterClause
               displayName: 'Run subset'
   - stage: Anonymize
-    displayName: Anonymize
+    displayName: Anonymize subset DB
     dependsOn: Subset
     condition: succeeded()
     jobs:
     - deployment: Anonymize
-      displayName: Anonymize the subset database
+      displayName: run anonymize.exe
       environment: 'Anonymize'
       strategy:
         runOnce:
@@ -95,7 +95,7 @@ stages:
     condition: succeeded()
     jobs:
     - deployment: CleanUp
-      displayName: Wait for approval
+      displayName: Pause to review data
       environment: 'Clean up'
       strategy:
         runOnce:
