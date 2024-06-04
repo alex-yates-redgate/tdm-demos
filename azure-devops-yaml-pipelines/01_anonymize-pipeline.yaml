@@ -13,24 +13,98 @@ parameters:
 - name: serverinstance
   default: "WIN2016"
 - name: databaseName
-  default: "Eastwind"
+  default: "Northwind"
+- name: backupDir
+  default: 'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Backup'
 
 stages:
+  - stage: SetUp  
+    displayName: SetUp
+    jobs:
+    - job: ${{parameters.databaseName}}
+      displayName: Subset ${{parameters.databaseName}}
+      steps:
+      - powershell: |
+          $backupDir = "${{parameters.backupDir}}"
+          $databaseName = "${{parameters.databaseName}}"
+          $mostRecentBackup = (Get-ChildItem -Path $backupDir | Where-Object {$_.Name -like "*$databaseName*"} | Sort-Object -Descending -Property LastWriteTime)[0]
+          $backupPath = "${backupDir}\$mostRecentBackup"
+          Write-Output "Most recent backup for $databaseName is: $backupPath"
+
+          import-module dbatools
+          Restore-DbaDatabase -SqlInstance ${{parameters.serverinstance}} -Path "$backupPath" -DatabaseName "${{parameters.databaseName}}_FullRestore" -DestinationFileSuffix "_FullRestore"
+        displayName: 'Restore backup'
+      - powershell: |
+          # Create a DBCC clone of the source DB
+          $sourceDb = "${{parameters.databaseName}}_FullRestore"
+          $targetDb = "${{parameters.databaseName}}_Subset"
+          $sql = "DBCC CLONEDATABASE ( $sourceDb , $targetDb ); ALTER DATABASE $targetDb SET READ_WRITE WITH ROLLBACK IMMEDIATE;"
+
+          import-module dbatools
+          Invoke-DbaQuery -SqlInstance ${{parameters.serverinstance}} -Query $sql
+        displayName: 'Create target for subset'
+      - task: ManualIntervention@8
+        inputs:
+          instructions: Review that the original database has been restored with suffix "_FullRestore", and a schema only copy has been created, with suffix "_Subset"  
+  - stage: Subset  
+    displayName: Subset data from source database into target database
+    jobs:
+    - job: ${{parameters.databaseName}}
+      displayName: Subset ${{parameters.databaseName}}
+      - powershell: |
+          # params in
+          $serverinstance = "${{parameters.serverinstance}}"
+          $sourceDb = "${{parameters.databaseName}}_FullRestore"
+          $targetDb = "${{parameters.databaseName}}_Subset" 
+          
+          # params out
+          $sourceConnectionString = "server=${serverinstance};database=${sourceDb};Integrated Security=true;TrustServerCertificate=true"
+          $targetConnectionString = "server=${serverinstance};database=${targetDb};Integrated Security=true;TrustServerCertificate=true"
+          $startingTable = "dbo.Orders"
+          $filterClause = "OrderId < 10260"
+
+          # running subset
+          subsetter --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --starting-table=$startingTable --filter-clause=$filterClause
+        displayName: 'Run subset'
+      - task: ManualIntervention@8
+        inputs:
+          instructions: Review that a subset of the production data has been copied into the _Subset database  
   - stage: Anonymize  
     displayName: Anonymize
     jobs:
     - job: ${{parameters.databaseName}}
       displayName: Anonymize ${{parameters.databaseName}}
-
       steps:
       - powershell: |
           $server = "${{ parameters.serverinstance }}"
-          $database = "${{ parameters.databaseName }}"
+          $database = "${{parameters.databaseName}}_Subset" 
           $message = "Running anonymize.exe on ${server}" + "." + "${database}"
           Write-Output "${message}"
           anonymize mask --database-engine SqlServer --connection-string "Server=${server}; Database=${database}; Integrated Security=true; TrustServerCertificate=true" --masking-file config\masking.json --options-file config\options.json
         displayName: Run anonymize.exe
+      - task: ManualIntervention@8
+        inputs:
+          instructions: Review that the data in the subset database has been statically masked  
+  - stage: CleanUp  
+    jobs:
+    - job: ${{parameters.databaseName}}
+      displayName: Clean up the staging databases
+      steps:
       - powershell: |
+          $subsetDb = "${{parameters.databaseName}}_Subset"
+          
           import-module dbatools
-          Backup-DbaDatabase -SqlInstance ${{ parameters.serverinstance }} -Database ${{ parameters.databaseName }}
-        displayName: Backup anonymized database
+          Backup-DbaDatabase -SqlInstance ${{ parameters.serverinstance }} -Database $subsetDb
+        displayName: 'Backup target'
+      - powershell: |
+          # Delete both staging databases
+          $sourceDb = "${{parameters.databaseName}}_FullRestore"
+          $subsetDb = "${{parameters.databaseName}}_Subset"
+          $sql = "DROP Database $sourceDb; DROP Database $subsetDb;"
+          import-module dbatools
+          Invoke-DbaQuery -SqlInstance ${{parameters.serverinstance}} -Query $sql
+        displayName: 'Clean up'
+      - task: ManualIntervention@8
+        inputs:
+          instructions: Review that the a backup has been taken of the subset database, and the _FullRestore and _Subset databases have been deleted  
+
