@@ -2,7 +2,7 @@
 $serverInstance = "WIN2016"
 $databaseName = "Northwind"
 $backupDir = 'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Backup'
-$gitRoot = 'C:\git\example-tdm-ado-yaml-pipelines'
+$gitRoot = 'C:\git\tdm-demos'
 $restoreDb = "${databaseName}_FullRestore"
 $subsetDb = "${databaseName}_Subset"
 

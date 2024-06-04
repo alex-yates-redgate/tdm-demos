@@ -1,0 +1,2010 @@
+{
+  "tables": [
+    {
+      "schema": "dbo",
+      "name": "AWBuildVersion",
+      "columns": [
+        {
+          "name": "SystemInformationID"
+        },
+        {
+          "name": "Database Version",
+          "maxLength": 25
+        },
+        {
+          "name": "VersionDate"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "DatabaseLog",
+      "columns": [
+        {
+          "name": "DatabaseLogID"
+        },
+        {
+          "name": "PostTime"
+        },
+        {
+          "name": "DatabaseUser",
+          "maxLength": 128
+        },
+        {
+          "name": "Event",
+          "maxLength": 128
+        },
+        {
+          "name": "Schema",
+          "maxLength": 128
+        },
+        {
+          "name": "Object",
+          "maxLength": 128
+        },
+        {
+          "name": "TSQL"
+        },
+        {
+          "name": "XmlEvent"
+        }
+      ]
+    },
+    {
+      "schema": "dbo",
+      "name": "ErrorLog",
+      "columns": [
+        {
+          "name": "ErrorLogID"
+        },
+        {
+          "name": "ErrorTime"
+        },
+        {
+          "name": "UserName",
+          "maxLength": 128
+        },
+        {
+          "name": "ErrorNumber"
+        },
+        {
+          "name": "ErrorSeverity"
+        },
+        {
+          "name": "ErrorState"
+        },
+        {
+          "name": "ErrorProcedure",
+          "maxLength": 126
+        },
+        {
+          "name": "ErrorLine"
+        },
+        {
+          "name": "ErrorMessage",
+          "maxLength": 4000
+        }
+      ]
+    },
+    {
+      "schema": "HumanResources",
+      "name": "Department",
+      "columns": [
+        {
+          "name": "DepartmentID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "GroupName",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "HumanResources",
+      "name": "Employee",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "NationalIDNumber",
+          "maxLength": 15
+        },
+        {
+          "name": "LoginID",
+          "maxLength": 256
+        },
+        {
+          "name": "OrganizationNode"
+        },
+        {
+          "name": "OrganizationLevel"
+        },
+        {
+          "name": "JobTitle",
+          "maxLength": 50
+        },
+        {
+          "name": "BirthDate",
+          "type": "DatesOfBirth"
+        },
+        {
+          "name": "MaritalStatus",
+          "maxLength": 1
+        },
+        {
+          "name": "Gender",
+          "maxLength": 1
+        },
+        {
+          "name": "HireDate"
+        },
+        {
+          "name": "SalariedFlag"
+        },
+        {
+          "name": "VacationHours"
+        },
+        {
+          "name": "SickLeaveHours"
+        },
+        {
+          "name": "CurrentFlag"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "HumanResources",
+      "name": "EmployeeDepartmentHistory",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "DepartmentID"
+        },
+        {
+          "name": "ShiftID"
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "HumanResources",
+      "name": "EmployeePayHistory",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "RateChangeDate"
+        },
+        {
+          "name": "Rate"
+        },
+        {
+          "name": "PayFrequency"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "HumanResources",
+      "name": "JobCandidate",
+      "columns": [
+        {
+          "name": "JobCandidateID"
+        },
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "Resume"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "HumanResources",
+      "name": "Shift",
+      "columns": [
+        {
+          "name": "ShiftID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "StartTime"
+        },
+        {
+          "name": "EndTime"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "Address",
+      "columns": [
+        {
+          "name": "AddressID"
+        },
+        {
+          "name": "AddressLine1",
+          "type": "StreetAddresses",
+          "maxLength": 60
+        },
+        {
+          "name": "AddressLine2",
+          "type": "StreetAddresses",
+          "maxLength": 60
+        },
+        {
+          "name": "City",
+          "type": "Cities",
+          "maxLength": 30
+        },
+        {
+          "name": "StateProvinceID"
+        },
+        {
+          "name": "PostalCode",
+          "type": "PostCodes",
+          "maxLength": 15
+        },
+        {
+          "name": "SpatialLocation"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "AddressType",
+      "columns": [
+        {
+          "name": "AddressTypeID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "BusinessEntity",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "BusinessEntityAddress",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "AddressID"
+        },
+        {
+          "name": "AddressTypeID"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "BusinessEntityContact",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "PersonID"
+        },
+        {
+          "name": "ContactTypeID"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "ContactType",
+      "columns": [
+        {
+          "name": "ContactTypeID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "CountryRegion",
+      "columns": [
+        {
+          "name": "CountryRegionCode",
+          "maxLength": 3
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "EmailAddress",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "EmailAddressID"
+        },
+        {
+          "name": "EmailAddress",
+          "type": "EmailAddresses",
+          "maxLength": 50
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "Password",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "PasswordHash",
+          "maxLength": 128
+        },
+        {
+          "name": "PasswordSalt",
+          "maxLength": 10
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "Person",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "PersonType",
+          "maxLength": 2
+        },
+        {
+          "name": "NameStyle"
+        },
+        {
+          "name": "Title",
+          "maxLength": 8
+        },
+        {
+          "name": "FirstName",
+          "type": "GivenNames",
+          "maxLength": 50
+        },
+        {
+          "name": "MiddleName",
+          "type": "GivenNames",
+          "maxLength": 50
+        },
+        {
+          "name": "LastName",
+          "type": "FamilyNames",
+          "maxLength": 50
+        },
+        {
+          "name": "Suffix",
+          "maxLength": 10
+        },
+        {
+          "name": "EmailPromotion"
+        },
+        {
+          "name": "AdditionalContactInfo"
+        },
+        {
+          "name": "Demographics"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "PersonPhone",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "PhoneNumber",
+          "type": "PhoneNumbers",
+          "maxLength": 25
+        },
+        {
+          "name": "PhoneNumberTypeID"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "PhoneNumberType",
+      "columns": [
+        {
+          "name": "PhoneNumberTypeID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Person",
+      "name": "StateProvince",
+      "columns": [
+        {
+          "name": "StateProvinceID"
+        },
+        {
+          "name": "StateProvinceCode",
+          "maxLength": 3
+        },
+        {
+          "name": "CountryRegionCode",
+          "maxLength": 3
+        },
+        {
+          "name": "IsOnlyStateProvinceFlag"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "TerritoryID"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "BillOfMaterials",
+      "columns": [
+        {
+          "name": "BillOfMaterialsID"
+        },
+        {
+          "name": "ProductAssemblyID"
+        },
+        {
+          "name": "ComponentID"
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "UnitMeasureCode",
+          "maxLength": 3
+        },
+        {
+          "name": "BOMLevel"
+        },
+        {
+          "name": "PerAssemblyQty"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "Culture",
+      "columns": [
+        {
+          "name": "CultureID",
+          "maxLength": 6
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "Document",
+      "columns": [
+        {
+          "name": "DocumentNode"
+        },
+        {
+          "name": "DocumentLevel"
+        },
+        {
+          "name": "Title",
+          "maxLength": 50
+        },
+        {
+          "name": "Owner"
+        },
+        {
+          "name": "FolderFlag"
+        },
+        {
+          "name": "FileName",
+          "maxLength": 400
+        },
+        {
+          "name": "FileExtension",
+          "maxLength": 8
+        },
+        {
+          "name": "Revision",
+          "maxLength": 5
+        },
+        {
+          "name": "ChangeNumber"
+        },
+        {
+          "name": "Status"
+        },
+        {
+          "name": "DocumentSummary"
+        },
+        {
+          "name": "Document"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ],
+      "constraints": [
+        {
+          "type": "Unique",
+          "columns": [
+            "rowguid"
+          ]
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "Illustration",
+      "columns": [
+        {
+          "name": "IllustrationID"
+        },
+        {
+          "name": "Diagram"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "Location",
+      "columns": [
+        {
+          "name": "LocationID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "CostRate"
+        },
+        {
+          "name": "Availability"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "Product",
+      "columns": [
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ProductNumber",
+          "maxLength": 25
+        },
+        {
+          "name": "MakeFlag"
+        },
+        {
+          "name": "FinishedGoodsFlag"
+        },
+        {
+          "name": "Color",
+          "maxLength": 15
+        },
+        {
+          "name": "SafetyStockLevel"
+        },
+        {
+          "name": "ReorderPoint"
+        },
+        {
+          "name": "StandardCost"
+        },
+        {
+          "name": "ListPrice"
+        },
+        {
+          "name": "Size",
+          "maxLength": 5
+        },
+        {
+          "name": "SizeUnitMeasureCode",
+          "maxLength": 3
+        },
+        {
+          "name": "WeightUnitMeasureCode",
+          "maxLength": 3
+        },
+        {
+          "name": "Weight"
+        },
+        {
+          "name": "DaysToManufacture"
+        },
+        {
+          "name": "ProductLine",
+          "maxLength": 2
+        },
+        {
+          "name": "Class",
+          "maxLength": 2
+        },
+        {
+          "name": "Style",
+          "maxLength": 2
+        },
+        {
+          "name": "ProductSubcategoryID"
+        },
+        {
+          "name": "ProductModelID"
+        },
+        {
+          "name": "SellStartDate"
+        },
+        {
+          "name": "SellEndDate"
+        },
+        {
+          "name": "DiscontinuedDate"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductCategory",
+      "columns": [
+        {
+          "name": "ProductCategoryID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductCostHistory",
+      "columns": [
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "StandardCost"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductDescription",
+      "columns": [
+        {
+          "name": "ProductDescriptionID"
+        },
+        {
+          "name": "Description",
+          "maxLength": 400
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductDocument",
+      "columns": [
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "DocumentNode"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductInventory",
+      "columns": [
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "LocationID"
+        },
+        {
+          "name": "Shelf",
+          "maxLength": 10
+        },
+        {
+          "name": "Bin"
+        },
+        {
+          "name": "Quantity"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductListPriceHistory",
+      "columns": [
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "ListPrice"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductModel",
+      "columns": [
+        {
+          "name": "ProductModelID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "CatalogDescription"
+        },
+        {
+          "name": "Instructions"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductModelIllustration",
+      "columns": [
+        {
+          "name": "ProductModelID"
+        },
+        {
+          "name": "IllustrationID"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductModelProductDescriptionCulture",
+      "columns": [
+        {
+          "name": "ProductModelID"
+        },
+        {
+          "name": "ProductDescriptionID"
+        },
+        {
+          "name": "CultureID",
+          "maxLength": 6
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductPhoto",
+      "columns": [
+        {
+          "name": "ProductPhotoID"
+        },
+        {
+          "name": "ThumbNailPhoto"
+        },
+        {
+          "name": "ThumbnailPhotoFileName",
+          "maxLength": 50
+        },
+        {
+          "name": "LargePhoto"
+        },
+        {
+          "name": "LargePhotoFileName",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductProductPhoto",
+      "columns": [
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "ProductPhotoID"
+        },
+        {
+          "name": "Primary"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductReview",
+      "columns": [
+        {
+          "name": "ProductReviewID"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "ReviewerName",
+          "type": "FullNames",
+          "maxLength": 50
+        },
+        {
+          "name": "ReviewDate"
+        },
+        {
+          "name": "EmailAddress",
+          "type": "EmailAddresses",
+          "maxLength": 50
+        },
+        {
+          "name": "Rating"
+        },
+        {
+          "name": "Comments",
+          "maxLength": 3850
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ProductSubcategory",
+      "columns": [
+        {
+          "name": "ProductSubcategoryID"
+        },
+        {
+          "name": "ProductCategoryID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "ScrapReason",
+      "columns": [
+        {
+          "name": "ScrapReasonID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "TransactionHistory",
+      "columns": [
+        {
+          "name": "TransactionID"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "ReferenceOrderID"
+        },
+        {
+          "name": "ReferenceOrderLineID"
+        },
+        {
+          "name": "TransactionDate"
+        },
+        {
+          "name": "TransactionType",
+          "maxLength": 1
+        },
+        {
+          "name": "Quantity"
+        },
+        {
+          "name": "ActualCost"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "TransactionHistoryArchive",
+      "columns": [
+        {
+          "name": "TransactionID"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "ReferenceOrderID"
+        },
+        {
+          "name": "ReferenceOrderLineID"
+        },
+        {
+          "name": "TransactionDate"
+        },
+        {
+          "name": "TransactionType",
+          "maxLength": 1
+        },
+        {
+          "name": "Quantity"
+        },
+        {
+          "name": "ActualCost"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "UnitMeasure",
+      "columns": [
+        {
+          "name": "UnitMeasureCode",
+          "maxLength": 3
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "WorkOrder",
+      "columns": [
+        {
+          "name": "WorkOrderID"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "OrderQty"
+        },
+        {
+          "name": "StockedQty"
+        },
+        {
+          "name": "ScrappedQty"
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "DueDate"
+        },
+        {
+          "name": "ScrapReasonID"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Production",
+      "name": "WorkOrderRouting",
+      "columns": [
+        {
+          "name": "WorkOrderID"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "OperationSequence"
+        },
+        {
+          "name": "LocationID"
+        },
+        {
+          "name": "ScheduledStartDate"
+        },
+        {
+          "name": "ScheduledEndDate"
+        },
+        {
+          "name": "ActualStartDate"
+        },
+        {
+          "name": "ActualEndDate"
+        },
+        {
+          "name": "ActualResourceHrs"
+        },
+        {
+          "name": "PlannedCost"
+        },
+        {
+          "name": "ActualCost"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Purchasing",
+      "name": "ProductVendor",
+      "columns": [
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "AverageLeadTime"
+        },
+        {
+          "name": "StandardPrice"
+        },
+        {
+          "name": "LastReceiptCost"
+        },
+        {
+          "name": "LastReceiptDate"
+        },
+        {
+          "name": "MinOrderQty"
+        },
+        {
+          "name": "MaxOrderQty"
+        },
+        {
+          "name": "OnOrderQty"
+        },
+        {
+          "name": "UnitMeasureCode",
+          "maxLength": 3
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Purchasing",
+      "name": "PurchaseOrderDetail",
+      "columns": [
+        {
+          "name": "PurchaseOrderID"
+        },
+        {
+          "name": "PurchaseOrderDetailID"
+        },
+        {
+          "name": "DueDate"
+        },
+        {
+          "name": "OrderQty"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "UnitPrice"
+        },
+        {
+          "name": "LineTotal"
+        },
+        {
+          "name": "ReceivedQty"
+        },
+        {
+          "name": "RejectedQty"
+        },
+        {
+          "name": "StockedQty"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Purchasing",
+      "name": "PurchaseOrderHeader",
+      "columns": [
+        {
+          "name": "PurchaseOrderID"
+        },
+        {
+          "name": "RevisionNumber"
+        },
+        {
+          "name": "Status"
+        },
+        {
+          "name": "EmployeeID"
+        },
+        {
+          "name": "VendorID"
+        },
+        {
+          "name": "ShipMethodID"
+        },
+        {
+          "name": "OrderDate"
+        },
+        {
+          "name": "ShipDate"
+        },
+        {
+          "name": "SubTotal"
+        },
+        {
+          "name": "TaxAmt"
+        },
+        {
+          "name": "Freight"
+        },
+        {
+          "name": "TotalDue"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Purchasing",
+      "name": "ShipMethod",
+      "columns": [
+        {
+          "name": "ShipMethodID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ShipBase"
+        },
+        {
+          "name": "ShipRate"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Purchasing",
+      "name": "Vendor",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "AccountNumber",
+          "maxLength": 15
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "CreditRating"
+        },
+        {
+          "name": "PreferredVendorStatus"
+        },
+        {
+          "name": "ActiveFlag"
+        },
+        {
+          "name": "PurchasingWebServiceURL",
+          "maxLength": 1024
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "CountryRegionCurrency",
+      "columns": [
+        {
+          "name": "CountryRegionCode",
+          "maxLength": 3
+        },
+        {
+          "name": "CurrencyCode",
+          "maxLength": 3
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "CreditCard",
+      "columns": [
+        {
+          "name": "CreditCardID"
+        },
+        {
+          "name": "CardType",
+          "maxLength": 50
+        },
+        {
+          "name": "CardNumber",
+          "maxLength": 25
+        },
+        {
+          "name": "ExpMonth"
+        },
+        {
+          "name": "ExpYear"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "Currency",
+      "columns": [
+        {
+          "name": "CurrencyCode",
+          "maxLength": 3
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "CurrencyRate",
+      "columns": [
+        {
+          "name": "CurrencyRateID"
+        },
+        {
+          "name": "CurrencyRateDate"
+        },
+        {
+          "name": "FromCurrencyCode",
+          "maxLength": 3
+        },
+        {
+          "name": "ToCurrencyCode",
+          "maxLength": 3
+        },
+        {
+          "name": "AverageRate"
+        },
+        {
+          "name": "EndOfDayRate"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "Customer",
+      "columns": [
+        {
+          "name": "CustomerID"
+        },
+        {
+          "name": "PersonID"
+        },
+        {
+          "name": "StoreID"
+        },
+        {
+          "name": "TerritoryID"
+        },
+        {
+          "name": "AccountNumber",
+          "maxLength": 10
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "PersonCreditCard",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "CreditCardID"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesOrderDetail",
+      "columns": [
+        {
+          "name": "SalesOrderID"
+        },
+        {
+          "name": "SalesOrderDetailID"
+        },
+        {
+          "name": "CarrierTrackingNumber",
+          "maxLength": 25
+        },
+        {
+          "name": "OrderQty"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "SpecialOfferID"
+        },
+        {
+          "name": "UnitPrice"
+        },
+        {
+          "name": "UnitPriceDiscount"
+        },
+        {
+          "name": "LineTotal"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesOrderHeader",
+      "columns": [
+        {
+          "name": "SalesOrderID"
+        },
+        {
+          "name": "RevisionNumber"
+        },
+        {
+          "name": "OrderDate"
+        },
+        {
+          "name": "DueDate"
+        },
+        {
+          "name": "ShipDate"
+        },
+        {
+          "name": "Status"
+        },
+        {
+          "name": "OnlineOrderFlag"
+        },
+        {
+          "name": "SalesOrderNumber",
+          "maxLength": 25
+        },
+        {
+          "name": "PurchaseOrderNumber",
+          "maxLength": 25
+        },
+        {
+          "name": "AccountNumber",
+          "maxLength": 15
+        },
+        {
+          "name": "CustomerID"
+        },
+        {
+          "name": "SalesPersonID"
+        },
+        {
+          "name": "TerritoryID"
+        },
+        {
+          "name": "BillToAddressID"
+        },
+        {
+          "name": "ShipToAddressID"
+        },
+        {
+          "name": "ShipMethodID"
+        },
+        {
+          "name": "CreditCardID"
+        },
+        {
+          "name": "CreditCardApprovalCode",
+          "maxLength": 15
+        },
+        {
+          "name": "CurrencyRateID"
+        },
+        {
+          "name": "SubTotal"
+        },
+        {
+          "name": "TaxAmt"
+        },
+        {
+          "name": "Freight"
+        },
+        {
+          "name": "TotalDue"
+        },
+        {
+          "name": "Comment",
+          "maxLength": 128
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesOrderHeaderSalesReason",
+      "columns": [
+        {
+          "name": "SalesOrderID"
+        },
+        {
+          "name": "SalesReasonID"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesPerson",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "TerritoryID"
+        },
+        {
+          "name": "SalesQuota"
+        },
+        {
+          "name": "Bonus"
+        },
+        {
+          "name": "CommissionPct"
+        },
+        {
+          "name": "SalesYTD"
+        },
+        {
+          "name": "SalesLastYear"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesPersonQuotaHistory",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "QuotaDate"
+        },
+        {
+          "name": "SalesQuota"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesReason",
+      "columns": [
+        {
+          "name": "SalesReasonID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "ReasonType",
+          "maxLength": 50
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesTaxRate",
+      "columns": [
+        {
+          "name": "SalesTaxRateID"
+        },
+        {
+          "name": "StateProvinceID"
+        },
+        {
+          "name": "TaxType"
+        },
+        {
+          "name": "TaxRate"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesTerritory",
+      "columns": [
+        {
+          "name": "TerritoryID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "CountryRegionCode",
+          "maxLength": 3
+        },
+        {
+          "name": "Group",
+          "maxLength": 50
+        },
+        {
+          "name": "SalesYTD"
+        },
+        {
+          "name": "SalesLastYear"
+        },
+        {
+          "name": "CostYTD"
+        },
+        {
+          "name": "CostLastYear"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SalesTerritoryHistory",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "TerritoryID"
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "ShoppingCartItem",
+      "columns": [
+        {
+          "name": "ShoppingCartItemID"
+        },
+        {
+          "name": "ShoppingCartID",
+          "maxLength": 50
+        },
+        {
+          "name": "Quantity"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "DateCreated"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SpecialOffer",
+      "columns": [
+        {
+          "name": "SpecialOfferID"
+        },
+        {
+          "name": "Description",
+          "maxLength": 255
+        },
+        {
+          "name": "DiscountPct"
+        },
+        {
+          "name": "Type",
+          "maxLength": 50
+        },
+        {
+          "name": "Category",
+          "maxLength": 50
+        },
+        {
+          "name": "StartDate"
+        },
+        {
+          "name": "EndDate"
+        },
+        {
+          "name": "MinQty"
+        },
+        {
+          "name": "MaxQty"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "SpecialOfferProduct",
+      "columns": [
+        {
+          "name": "SpecialOfferID"
+        },
+        {
+          "name": "ProductID"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "schema": "Sales",
+      "name": "Store",
+      "columns": [
+        {
+          "name": "BusinessEntityID"
+        },
+        {
+          "name": "Name",
+          "maxLength": 50
+        },
+        {
+          "name": "SalesPersonID"
+        },
+        {
+          "name": "Demographics"
+        },
+        {
+          "name": "rowguid"
+        },
+        {
+          "name": "ModifiedDate"
+        }
+      ]
+    }
+  ]
+}

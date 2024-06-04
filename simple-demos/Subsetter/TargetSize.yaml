@@ -1,0 +1,2 @@
+DatabaseEngine: "SqlServer" # SQL Server/MySQL/PostgreSQL/Oracle
+TargetSize: 100MB # (B|KB|MB|GB|TB)
