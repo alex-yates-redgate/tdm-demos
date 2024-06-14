@@ -1,16 +1,15 @@
 DatabaseEngine: "SqlServer" # SQL Server/MySQL/PostgreSQL/Oracle
-FilterTable: "[Person].[Person]"
-FilterClause: "[BusinessEntityID] < 20"
-#FilterTable: "Purchasing.ProductVendor"
-#FilterClause: "ProductID IN (SELECT ProductID FROM Purchasing.ProductVendor pv INNER JOIN Person.BusinessEntityAddress bea ON pv.BusinessEntityID=bea.BusinessEntityID INNER JOIN Person.Address a ON bea.AddressID=a.AddressID WHERE a.City='Glendale')"
+StartingTables:
+- Table: "[Person].[Person]"
+  FilterClause: "[BusinessEntityID] < 20"
+#- Table: "Purchasing.ProductVendor"
+#  FilterClause: "ProductID IN (SELECT ProductID FROM Purchasing.ProductVendor pv INNER JOIN Person.BusinessEntityAddress bea ON pv.BusinessEntityID=bea.BusinessEntityID INNER JOIN Person.Address a ON bea.AddressID=a.AddressID WHERE a.City='Glendale')"
 ManualRelationships:
-  -
-    ParentTable: "[Person].[Person]"
+  - ParentTable: "[Person].[Person]"
     ParentColumns: ["BusinessEntityID"]
     ChildTable: "[Sales].[SalesPerson]"
     ChildColumns: ["BusinessEntityID"]
-  # -
-  #   ParentTable: "[dbo].[Users]"
-  #   ParentColumns: ["[Id]"]
-  #   ChildTable: "[dbo].[Sales]"
-  #   ChildColumns: ["[UserId]"]
+# - ParentTable: "[dbo].[Users]"
+#    ParentColumns: ["[Id]"]
+#    ChildTable: "[dbo].[Sales]"
+#    ChildColumns: ["[UserId]"]
