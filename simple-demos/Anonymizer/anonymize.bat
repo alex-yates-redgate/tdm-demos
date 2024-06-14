@@ -30,3 +30,5 @@ echo.
 echo Masking...
 Anonymize.exe mask --database-engine %databaseType% --connection-string %connectionString% --masking-file masking.json --options-file anonymizeconfig.json
 echo.
+
+pause
