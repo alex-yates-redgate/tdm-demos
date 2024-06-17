@@ -11,4 +11,4 @@ subsetter.exe `
 --source-connection-string "Server=localhost;Database=AdventureWorks_Prod;trusted_connection=yes;TrustServerCertificate=yes" `
 --target-connection-string "Server=localhost;Database=AdventureWorks_TDM;trusted_connection=yes;TrustServerCertificate=yes" `
 --target-database-write-mode Overwrite `
---config-file="$projRoot\simple-demos\Subsetter\Filter.yaml"
+--config-file="$projRoot\Subsetter\Filter.yaml"
