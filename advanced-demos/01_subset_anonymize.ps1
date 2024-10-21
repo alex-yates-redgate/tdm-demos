@@ -29,19 +29,19 @@ Restore-DbaDatabase -SqlInstance $serverInstance -Path "$backupPath" -DatabaseNa
 $sql = "DBCC CLONEDATABASE ( $restoreDb , $subsetDb ); ALTER DATABASE $subsetDb SET READ_WRITE WITH ROLLBACK IMMEDIATE;"
 Invoke-DbaQuery -SqlInstance $serverInstance -Query $sql
           
-# Params for subset command
+# Params for rgsubset command
 $sourceConnectionString = "server=${serverInstance};database=${restoreDb};Integrated Security=true;TrustServerCertificate=true"
 $targetConnectionString = "server=${serverInstance};database=${subsetDb};Integrated Security=true;TrustServerCertificate=true"
 $startingTable = "dbo.Orders"
 $filterClause = "OrderId < 10260"
 
-# Running subset
-subsetter --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --starting-table=$startingTable --filter-clause=$filterClause
+# Running rgsubset
+rgsubset --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --starting-table=$startingTable --filter-clause=$filterClause
          
-# Running anonymize
+# Running rganonymize
 $maskFile = "${gitRoot}\config\masking.json"
 $optionsFile = "${gitRoot}\config\options.json"
-anonymize mask --database-engine SqlServer --connection-string "Server=${serverInstance}; Database=${subsetDb}; Integrated Security=true; TrustServerCertificate=true" --masking-file $maskFile  --options-file $optionsFile
+rganonymize mask --database-engine SqlServer --connection-string "Server=${serverInstance}; Database=${subsetDb}; Integrated Security=true; TrustServerCertificate=true" --masking-file $maskFile  --options-file $optionsFile
 
 # Backing up the subset DB
 Backup-DbaDatabase -SqlInstance $serverInstance -Database $subsetDb
