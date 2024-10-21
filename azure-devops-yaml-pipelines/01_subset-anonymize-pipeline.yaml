@@ -49,7 +49,7 @@ stages:
     condition: succeeded()
     jobs:
     - deployment: Subset
-      displayName: run subset.exe
+      displayName: run rgsubset.exe
       environment: 'Subset'
       strategy:
         runOnce:
@@ -67,16 +67,16 @@ stages:
                 $startingTable = "dbo.Orders"
                 $filterClause = """OrderId < 10260"""
 
-                # running subset
-                subsetter --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --starting-table=$startingTable --filter-clause=$filterClause
-              displayName: 'Run subset'
+                # running rgsubset
+                rgsubset --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --starting-table=$startingTable --filter-clause=$filterClause
+              displayName: 'Run rgsubset'
   - stage: Anonymize
     displayName: Anonymize subset DB
     dependsOn: Subset
     condition: succeeded()
     jobs:
     - deployment: Anonymize
-      displayName: run anonymize.exe
+      displayName: run rganonymize.exe
       environment: 'Anonymize'
       strategy:
         runOnce:
@@ -87,8 +87,8 @@ stages:
                 $database = "${{parameters.databaseName}}_Subset" 
                 $message = "Running anonymize.exe on ${server}" + "." + "${database}"
                 Write-Output "${message}"
-                anonymize mask --database-engine SqlServer --connection-string "Server=${server}; Database=${database}; Integrated Security=yes; TrustServerCertificate=yes" --masking-file config\masking.json
-              displayName: Run anonymize.exe
+                rganonymize mask --database-engine SqlServer --connection-string "Server=${server}; Database=${database}; Integrated Security=yes; TrustServerCertificate=yes" --masking-file config\masking.json
+              displayName: Run rganonymize.exe
   - stage: CleanUp
     displayName: Clean up staging databases
     dependsOn: Anonymize
