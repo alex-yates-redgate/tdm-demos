@@ -1,11 +1,4 @@
 name: redgate-anonymize-example
- 
-schedules:
-- cron: 0 2 * * * # cron syntax for 2am daily
-  branches:
-    include: 
-    - main
-  displayName: 2am daily # friendly name given to a specific schedule
 
 trigger: none
 
@@ -30,17 +23,25 @@ stages:
           $mostRecentBackup = (Get-ChildItem -Path $backupDir | Where-Object {($_.Name -like "*$databaseName*") -and ($_.Name -notlike "*${databaseName}_Subset*")} | Sort-Object -Descending -Property LastWriteTime)[0]
           $backupPath = "${backupDir}\$mostRecentBackup"
           Write-Output "Most recent backup for $databaseName is: $backupPath"
+          $sourceDb = "${{parameters.databaseName}}_FullRestore"
 
           import-module dbatools
-          Restore-DbaDatabase -SqlInstance ${{parameters.serverinstance}} -Path "$backupPath" -DatabaseName "${{parameters.databaseName}}_FullRestore" -DestinationFileSuffix "_FullRestore"
+          if (Get-DbaDatabase -SqlInstance localhost -database $sourceDb){
+              "$sourceDb DB already exists: Deleting"
+              Remove-DbaDatabase -SqlInstance localhost -database $sourceDb -Confirm:$false
+          }
+          Restore-DbaDatabase -SqlInstance ${{parameters.serverinstance}} -Path "$backupPath" -DatabaseName $sourceDb -DestinationFileSuffix "_FullRestore"
         displayName: 'Restore backup'
       - powershell: |
           # Create a DBCC clone of the source DB
           $sourceDb = "${{parameters.databaseName}}_FullRestore"
           $targetDb = "${{parameters.databaseName}}_Subset"
-          $sql = "DBCC CLONEDATABASE ( $sourceDb , $targetDb ); ALTER DATABASE $targetDb SET READ_WRITE WITH ROLLBACK IMMEDIATE;"
-
           import-module dbatools
+          if (Get-DbaDatabase -SqlInstance localhost -database $targetDb){
+              "$targetDb DB already exists: Deleting"
+              Remove-DbaDatabase -SqlInstance localhost -database $targetDb -Confirm:$false
+          }
+          $sql = "DBCC CLONEDATABASE ( $sourceDb , $targetDb ); ALTER DATABASE $targetDb SET READ_WRITE WITH ROLLBACK IMMEDIATE;"
           Invoke-DbaQuery -SqlInstance ${{parameters.serverinstance}} -Query $sql
         displayName: 'Create target for subset'
   - stage: Subset  
@@ -64,11 +65,8 @@ stages:
                 # params out
                 $sourceConnectionString = """server=${serverinstance};database=${sourceDb};Integrated Security=yes;TrustServerCertificate=yes"""
                 $targetConnectionString = """server=${serverinstance};database=${targetDb};Integrated Security=yes;TrustServerCertificate=yes"""
-                $startingTable = "dbo.Orders"
-                $filterClause = """OrderId < 10260"""
-
-                # running rgsubset
-                rgsubset --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --starting-table=$startingTable --filter-clause=$filterClause
+                # running subset
+                rgsubset run --database-engine=sqlserver --source-connection-string=$sourceConnectionString --target-connection-string=$targetConnectionString --options-file="$(Build.Repository.LocalPath)\config\rgsubset-options.json"
               displayName: 'Run rgsubset'
   - stage: Anonymize
     displayName: Anonymize subset DB
@@ -85,7 +83,7 @@ stages:
             - powershell: |
                 $server = "${{ parameters.serverinstance }}"
                 $database = "${{parameters.databaseName}}_Subset" 
-                $message = "Running anonymize.exe on ${server}" + "." + "${database}"
+                $message = "Running rganonymize.exe on ${server}" + "." + "${database}"
                 Write-Output "${message}"
                 rganonymize mask --database-engine SqlServer --connection-string "Server=${server}; Database=${database}; Integrated Security=yes; TrustServerCertificate=yes" --masking-file config\masking.json
               displayName: Run rganonymize.exe
