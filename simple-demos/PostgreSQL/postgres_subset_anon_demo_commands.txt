@@ -20,7 +20,6 @@ rganonymize classify ^
   --connection-string "INSERT_CONNECTION_STRING" ^
   --classification-file C:\temp\classification.json
 
-
 rganonymize map ^
   --classification-file C:\temp\classification.json ^
   --masking-file C:\temp\masking.json
