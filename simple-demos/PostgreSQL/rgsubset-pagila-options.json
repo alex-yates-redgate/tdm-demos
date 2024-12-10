@@ -1,0 +1,13 @@
+{
+    "jsonSchemaVersion": 1,
+    "startingTables": [
+      {
+        "table":
+        {
+          "schema": "pagila",
+          "name": "rental"
+        },
+        "filterClause": "rental_id < 10"
+      }
+    ]
+  }
