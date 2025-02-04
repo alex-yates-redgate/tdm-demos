@@ -1,0 +1,15 @@
+status from : 2025/02/04 - MC : 
+
+If you want to use masking and classifying on TDM data threatments use this code : 
+
+
+rganonymize classify --database-engine Oracle --connection-string "DATA SOURCE=localhost/Dev1; PASSWORD='Redg@te1'; USER ID=HR;" --classification-file "C:\Oracle/classification.json"
+
+rganonymize map --classification-file classification.json --masking-file masking.json
+
+rganonymize mask --database-engine Oracle --connection-string "DATA SOURCE=localhost/Dev1; PASSWORD='Redg@te1'; USER ID=HR;" --masking-file masking.json
+
+
+
+Oracle DEv1 username : HR 
+Oracle Dev1 password : Redg@te1
